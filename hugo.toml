@@ -14,3 +14,7 @@ pygmentscodefences  = true
 [[menu.main]]
     name = "About"
     url  = "https://github.com/DDR5-5600/"
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
