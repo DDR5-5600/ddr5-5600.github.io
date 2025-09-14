@@ -1,8 +1,10 @@
 baseURL = 'https://ddr5-5600.github.io/'
 languageCode = 'zh-tw'
 defaultContentLanguage = 'zh-tw'
+hasCJKLanguage = true
 title = "DDR5-5600's blog"
 theme = 'black-and-light'
+
 
 pygmentsstyle       = "bw"
 pygmentscodefences  = true

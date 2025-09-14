@@ -13,7 +13,7 @@
       <link>https://ddr5-5600.github.io/posts/debian-frontend-noninteractive-dpkg-reconfigure/</link>
       <pubDate>Sun, 14 Sep 2025 07:45:04 +0800</pubDate>
       <guid>https://ddr5-5600.github.io/posts/debian-frontend-noninteractive-dpkg-reconfigure/</guid>
-      <description>&lt;p&gt;前陣子寫了個能自動建立 Debian LiveUSB 的 shell script,&lt;br&gt;&#xA;過程中發現鍵盤沒辦法和 apt 互動被卡在選擇界面只能重啟電腦,&lt;br&gt;&#xA;直接用 &lt;code&gt;DEBIAN_FRONTEND=noninteractive&lt;/code&gt; 把互動全部壓下去,&lt;br&gt;&#xA;script 是順利執行完了，但這時卻發現無法自訂 wireshark-common 的組態。&lt;/p&gt;&#xA;&lt;p&gt;最後這樣解決:&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;echo &amp;#34;wireshark-common wireshark-common/install-setuid boolean true&amp;#34; | debconf-set-selections&#xA;dpkg-reconfigure wireshark-common&#xA;usermod -aG wireshark kali&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;用 &lt;code&gt;debconf-set-selections&lt;/code&gt; 強制指定 &lt;code&gt;debconf&lt;/code&gt; 的選擇,&lt;br&gt;&#xA;然後直接跑一遍 &lt;code&gt;dpkg-reconfigure&lt;/code&gt; 讓它吃進去,&lt;br&gt;&#xA;唯一需要安裝的軟體套件是 &lt;code&gt;debconf-utils&lt;/code&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;前陣子寫了個能自動建立 Debian LiveUSB 的 shell script,&lt;br&gt;&#xA;過程中發現鍵盤沒辦法和 apt 互動被卡在選擇界面只能重啟電腦,&lt;br&gt;&#xA;直接用 &lt;code&gt;DEBIAN_FRONTEND=noninteractive&lt;/code&gt; 把互動全部壓下去,&lt;br&gt;&#xA;script 是順利執行完了，但這時卻發現無法自訂 wireshark-common 的組態。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
