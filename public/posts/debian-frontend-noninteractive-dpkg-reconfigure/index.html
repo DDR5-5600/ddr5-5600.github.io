@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-tw">
   <head>
-	<meta name="generator" content="Hugo 0.147.7">
     <meta charset="utf-8">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -14,10 +13,10 @@
     <title>
       
       
-         DDR5-5600&#39;s blog 
+         自動化 dpkg-reconfigure 過程的方法 
       
     </title>
-    <link rel="canonical" href="https://ddr5-5600.github.io/">
+    <link rel="canonical" href="https://ddr5-5600.github.io/posts/debian-frontend-noninteractive-dpkg-reconfigure/">
 
     <style>
   * {
@@ -403,7 +402,6 @@
 </style>
 
 
-    <link rel="alternate" type="application/rss+xml" href="https://ddr5-5600.github.io/index.xml" title="DDR5-5600's blog" />
     </head>
 
   <body>
@@ -418,22 +416,38 @@
 
 
 <section id=content>
-  <ul class=posts_listing>
+  <h1> 自動化 dpkg-reconfigure 過程的方法 </h1>
+
+  
+    <div id=sub-header>
+      September 2025 · 1 minute read
+    </div>
+  
+
+  <div class="entry-content">
+    <p>前陣子寫了個能自動建立 Debian LiveUSB 的 shell script,<br>
+過程中發現鍵盤沒辦法和 apt 互動被卡在選擇界面只能重啟電腦,<br>
+直接用 <code>DEBIAN_FRONTEND=noninteractive</code> 把互動全部壓下去,<br>
+script 是順利執行完了，但這時卻發現無法自訂 wireshark-common 的組態。</p>
+<p>最後這樣解決:</p>
+<pre tabindex="0"><code>echo &#34;wireshark-common wireshark-common/install-setuid boolean true&#34; | debconf-set-selections
+dpkg-reconfigure wireshark-common
+usermod -aG wireshark kali
+</code></pre><p>用 <code>debconf-set-selections</code> 強制指定 <code>debconf</code> 的選擇,<br>
+然後直接跑一遍 <code>dpkg-reconfigure</code> 讓它吃進去,<br>
+唯一需要安裝的軟體套件是 <code>debconf-utils</code></p>
+
+  </div>
+
+  <div id=links>
     
-      <li>
-        <h2><a href="https://ddr5-5600.github.io/posts/debian-frontend-noninteractive-dpkg-reconfigure/">自動化 dpkg-reconfigure 過程的方法</a></h2>
-        <div class=date>
-          
-            September 2025
-          
-        </div>
-      </li>
     
-  </ul>
+  </div>
 </section>
 
 
 </body>
 </html>
+
 
 
